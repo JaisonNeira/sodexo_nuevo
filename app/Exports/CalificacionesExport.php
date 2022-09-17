@@ -35,6 +35,7 @@ class CalificacionesExport implements FromCollection, WithHeadings
             'Nit Empresa',
             'Nombre Empresa',
             'Calificacion',
+            'Puntaje',
             'Fecha creacion'
         ];
     }
@@ -51,6 +52,7 @@ class CalificacionesExport implements FromCollection, WithHeadings
             'empr_nit',
             'empr_nombre',
             'calificaciones.cal_calificacion',
+            'calificaciones.cal_puntaje',
             'calificaciones.created_at'
         )
             ->leftjoin('empleados', 'empleados.emp_id', '=', 'calificaciones.emp_id')

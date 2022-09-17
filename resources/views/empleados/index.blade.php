@@ -23,6 +23,7 @@
             @include('empleados.create')
 
             @include('layouts.msj')
+            @include('empleados.msj')
 
             <div class="card mb-4">
                 <div class="card-body">

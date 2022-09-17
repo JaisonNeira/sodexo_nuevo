@@ -23,6 +23,7 @@
             @include('empresas.create')
 
             @include('layouts.msj')
+            @include('empresas.msj')
 
             <div class="card mb-4">
                 <div class="card-body">

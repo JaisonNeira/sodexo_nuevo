@@ -1,17 +1,20 @@
 @error('name')
-    <span class="invalid-feedback" role="alert">
-        <strong>{{ $message }}</strong>
-    </span>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong> {{ $message }} </strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
 @enderror
 
 @error('email')
-    <span class="invalid-feedback" role="alert">
-        <strong>{{ $message }}</strong>
-    </span>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong> {{ $message }} </strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
 @enderror
 
 @error('password')
-    <span class="invalid-feedback" role="alert">
-        <strong>{{ $message }}</strong>
-    </span>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong> {{ $message }} </strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
 @enderror

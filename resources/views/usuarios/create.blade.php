@@ -10,6 +10,9 @@ Crear Usuario
     <div class="section-header">
         <h3 class="page__heading">Crear Usuarios</h3>
     </div>
+
+    @include('usuarios.msj')
+
     <div class="section-body">
         <div class="row">
             <div class="col-lg-12">

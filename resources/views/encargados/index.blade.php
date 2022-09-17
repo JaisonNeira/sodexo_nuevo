@@ -23,6 +23,7 @@ Encargados
             @include('encargados.create')
 
             @include('layouts.msj')
+            @include('encargados.msj')
 
             <div class="card mb-4">
                 <div class="card-body">

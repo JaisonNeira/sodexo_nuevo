@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Arr;
@@ -51,7 +52,7 @@ class userController extends Controller
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
 
-        return redirect()->route('indexUser');
+        return redirect()->route('indexUser')->with('rgcmessage', 'Usuario cargada con exito!...');;
     }
 
     public function edit($id)
@@ -85,13 +86,14 @@ class userController extends Controller
 
         $user->assignRole($request->input('roles'));
 
+        Session::flash('msjupdate', '¡El usuario se a actualizado correctamente!...');
         return redirect()->route('indexUser');
     }
 
     public function destroy($id)
     {
         User::find($id)->delete();
-        return redirect()->route('indexUser');
+        return redirect()->route('indexUser')->with('msjdelete', 'Usuario borrada correctamente!...');
     }
 
 
