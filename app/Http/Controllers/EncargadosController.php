@@ -13,10 +13,10 @@ class EncargadosController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
-        $total = encargado::count();
+        $total = encargado::where('enc_estado', '=', '1')->count();
 
         $encargados = encargado::where('enc_estado', '=', '1')->get();
 

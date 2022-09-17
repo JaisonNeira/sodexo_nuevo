@@ -13,10 +13,10 @@ class CursosController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index(){
 
-        $total = curso::count();
+        $total = curso::where('cur_estado', '=', '1')->count();
 
         $cursos = curso::where('cur_estado', '=', '1')->get();
 

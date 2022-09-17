@@ -9,15 +9,15 @@ use App\Models\empresa;
 
 class EmpresasController extends Controller
 {
-    
+
     public function __construct()
     {
         $this->middleware('auth');
     }
-    
+
     public function index(){
 
-        $total = empresa::count();
+        $total = empresa::where('empr_estado', '=', '1')->count();
 
         $empresas = empresa::where('empr_estado', '=', '1')->get();
 

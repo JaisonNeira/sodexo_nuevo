@@ -47,13 +47,12 @@ window.onload = function () {
                         '<div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="9">' + item['cal_puntaje'] + '</div>' +
                         '</div>' +
                         '</td>' +
-                        '<td>' + 'null' + '</td>' +
-
-                        '<td>' + item['cal_calificacion'] + '</td>' +
+                        '<td>' + item['cal_calificacion'] + '%</td>' +
                         '<td>' + item['created_at'] + '</td>' +
                         '<td>' +
                         '<a class="btn btn-primary" onclick="buscar_datos(' + item['cal_id'] + ');" data-toggle="modal" data-target="#editModal"> <i class="bx bxs-edit-alt bx-xs" style="font-size: 20px!important;"></i></a>' +
                         '<a class="btn btn-success" onclick="ver_mas(' + item['cal_id'] + ')" data-toggle="modal" data-target="#verModal"> <i class="bx bx-show bx-xs" style="font-size: 20px!important;"></i></a>' +
+                        '<a class="btn btn-danger" href="/resultados/pdf/' + item['cal_id'] + '"><i class="bx bxs-file-pdf"></i></a>'+
                         '</td>' +
                         '</tr>'
                     );
@@ -116,16 +115,16 @@ function cargarDatos() {
                         '<td>' + item['empr_nombre'] + '</td>' +
                         '<td>' +
                         '<div class="progress">' +
-                        '<div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">1/1</div>' +
+                        '<div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="9">' + item['cal_puntaje'] + '</div>' +
                         '</div>' +
                         '</td>' +
-                        '<td>' + 'null' + '</td>' +
 
-                        '<td>' + item['cal_calificacion'] + '</td>' +
+                        '<td>' + item['cal_calificacion'] + '%</td>' +
                         '<td>' + item['created_at'] + '</td>' +
                         '<td>' +
                         '<a class="btn btn-primary" onclick="buscar_datos(' + item['cal_id'] + ');" data-toggle="modal" data-target="#editModal"> <i class="bx bxs-edit-alt bx-xs" style="font-size: 20px!important;"></i></a>' +
                         '<a class="btn btn-success" onclick="ver_mas(' + item['cal_id'] + ')" data-toggle="modal" data-target="#verModal"> <i class="bx bx-show bx-xs" style="font-size: 20px!important;"></i></a>' +
+                        '<a class="btn btn-danger" href="/resultados/pdf/' + item['cal_id'] + '"><i class="bx bxs-file-pdf"></i></a>'+
                         '</td>' +
                         '</tr>'
                     );
@@ -187,16 +186,15 @@ function busqueda_avanzada() {
                         '<td>' + item['empr_nombre'] + '</td>' +
                         '<td>' +
                         '<div class="progress">' +
-                        '<div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">1/1</div>' +
+                        '<div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="9">' + item['cal_puntaje'] + '</div>' +
                         '</div>' +
                         '</td>' +
-                        '<td>' + 'null' + '</td>' +
-
-                        '<td>' + item['cal_calificacion'] + '</td>' +
+                        '<td>' + item['cal_calificacion'] + '%</td>' +
                         '<td>' + item['created_at'] + '</td>' +
                         '<td>' +
                         '<a class="btn btn-primary" onclick="buscar_datos(' + item['cal_id'] + ');" data-toggle="modal" data-target="#editModal"> <i class="bx bxs-edit-alt bx-xs" style="font-size: 20px!important;"></i></a>' +
                         '<a class="btn btn-success" onclick="ver_mas(' + item['cal_id'] + ')" data-toggle="modal" data-target="#verModal"> <i class="bx bx-show bx-xs" style="font-size: 20px!important;"></i></a>' +
+                        '<a class="btn btn-danger" href="/resultados/pdf/' + item['cal_id'] + '"><i class="bx bxs-file-pdf"></i></a>'+
                         '</td>' +
                         '</tr>'
                     );
@@ -339,7 +337,9 @@ function ver_mas(cal_id) {
                 '</tr>' +
                 '<tr>' +
                 '<th scope="row">Calificacion</th>' +
-                '<td colspan="3">' + resp.cal_calificacion + '</td>' +
+                '<td colspan="1">' + resp.cal_calificacion + '</td>' +
+                '<th scope="row">Puntaje</th>' +
+                '<td colspan="1">' + resp.cal_puntaje + '</td>' +
                 '</tr>'
             );
 

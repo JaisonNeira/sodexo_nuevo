@@ -11,16 +11,16 @@ use App\Models\sede;
 
 class EmpleadosController extends Controller
 {
-    
+
     public function __construct()
     {
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
 
-        $total = empleado::count();
+        $total = empleado::where('emp_estado', '=', '1')->count();
 
         $sql = "SELECT emp.*, empr.empr_id ,empr.empr_nombre, sed.sed_id, sed.sed_nombre
         FROM empleados AS emp

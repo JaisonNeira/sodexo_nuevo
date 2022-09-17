@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ResultadosController;
@@ -33,6 +34,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
+
+Route::get('/p', function () {
+    return view('pdf');
+});
+
 Auth::routes();
 
 Route::get('/home', [HomeController::class,'index'])->name('home');
@@ -46,6 +52,7 @@ Route::get('/exportar', [ResultadosController::class, 'export'])->name('export.c
 Route::get('/calificacion/get', [ResultadosController::class, 'buscarDatosActualizar'])->name('caligicacion:get');
 Route::put('/resultados/update', [ResultadosController::class, 'ActualizarDatos'])->name('update.resultado');
 Route::get('/resultados/vermas', [ResultadosController::class, 'Ver_mas'])->name('ver.mas.resultado');
+Route::get('/resultados/pdf/{id}', [ResultadosController::class, 'download_pdf'])->name('download.pdf');
 
 
 Route::get('/gb/dashboard', [ResultadosController::class, 'graficaBarra'])->name('graficos.dashboard');

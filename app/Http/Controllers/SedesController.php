@@ -13,12 +13,12 @@ class SedesController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index(){
 
-        $total = sede::count();
+        $total = sede::where('sed_estado', '=', '1')->count();
 
-        $sedes = sede::all();
+        $sedes = sede::where('sed_estado', '=', '1')->get();
 
         return view('sedes.index', compact('sedes', 'total'));
 

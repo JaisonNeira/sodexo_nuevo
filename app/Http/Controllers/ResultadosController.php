@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 use Illuminate\Support\Facades\Session;
 use App\Exports\CalificacionesExport;
 use App\Models\Calificacione;
@@ -46,6 +47,7 @@ class ResultadosController extends Controller
         echo json_encode(
             array(
                 "success" => true,
+                "cal_puntaje" => $data[0]->cal_puntaje,
                 "emp_cedula" => $data[0]->emp_cedula,
                 "emp_nombre" => $data[0]->emp_nombre.' '.$data[0]->emp_apellidos,
                 "emp_cargo" => $data[0]->emp_cargo,
@@ -168,11 +170,39 @@ class ResultadosController extends Controller
             $f_ini = $request->fecha_inicio;
             $f_fin = $request->fecha_fin;
 
-            return Excel::download(new CalificacionesExport($f_ini, $f_fin), 'Calificaicones.xlsx');
+            return Excel::download(new CalificacionesExport($f_ini, $f_fin), 'Calificaciones.xlsx');
         }
 
         return redirect()->back()->with('noregistromessage', 'No se encontraron examenes entre las fecha: ' . $request->fecha_inicio . ' y ' . $request->fecha_fin . '!...');
 
+    }
+
+    public function download_pdf($id)
+    {
+        $sql = "SELECT emp.emp_id, emp.emp_cedula, emp.emp_nombre, emp.emp_cargo, cur.cur_id,
+         cur.cur_nombre, sed.sed_id, sed.sed_nombre, enc.enc_id, enc.enc_nombre, empr.empr_id,
+          empr.empr_nit, empr.empr_nombre, cal.cal_id, cal.cal_codigo, cal.cal_puntaje, cal.cal_calificacion, cal.created_at
+        FROM empleados emp
+        LEFT JOIN calificaciones cal ON cal.emp_id = emp.emp_id
+        LEFT JOIN sedes sed ON emp.sed_id = sed.sed_id
+        LEFT JOIN empresas empr ON emp.empr_id = empr.empr_id
+        LEFT JOIN cursos cur ON cal.cur_id = cur.cur_id
+        LEFT JOIN encargados enc ON enc.enc_id = cal.enc_id
+        WHERE cal.cal_id = ".$id;
+
+        $calificacion = DB::select($sql);
+
+        $sql2 = "SELECT res.res_id, pre.pre_id, res.res_respuesta, pre.pre_nombre, pre.pre_consejo
+        FROM resultados AS res
+        INNER JOIN preguntas AS pre ON res.res_pregunta = pre.pre_id
+        WHERE res.cal_id = ".$id."
+        ORDER BY pre.pre_id ASC";
+
+        $respuestas = DB::select($sql2);
+
+        $pdf = PDF::loadView('pdf', compact('calificacion', 'respuestas'));
+
+        return $pdf->download('reporte.pdf');
     }
 
 
