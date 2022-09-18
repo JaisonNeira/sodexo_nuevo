@@ -131,7 +131,7 @@
                             <div class="form-group col-md-6">
                                 <label for="inputAddress">Calificacion</label>
                                 <input type="number" class="form-control" id="cal_calificacion"
-                                    name="cal_calificacion">
+                                    name="cal_calificacion" disabled>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary" style="float: right;">Guardar</button>

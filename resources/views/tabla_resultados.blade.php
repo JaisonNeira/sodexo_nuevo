@@ -1,10 +1,10 @@
 <table id="tablaEncargados" class="table table-striped">
     <thead>
         <tr>
-            <th scope="col">Ficha</th>
+            <th scope="col">#</th>
             <th scope="col">Cedula de Ciudadania</th>
             <th scope="col">Nombre</th>
-            <th scope="col">Cargo</th>
+            <th scope="col">Operacion</th>
             <th scope="col">Curso</th>
             <th scope="col">Sede</th>
             <th scope="col">Encargado</th>

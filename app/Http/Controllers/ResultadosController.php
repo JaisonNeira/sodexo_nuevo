@@ -151,7 +151,7 @@ class ResultadosController extends Controller
     public function export(request $request)
     {
 
-        $sql = "SELECT emp.emp_id, emp.emp_cedula, emp.emp_nombre, emp.emp_cargo, cur.cur_id,
+        $sql = "SELECT emp.emp_id, emp.emp_cedula, emp.emp_nombre, emp.emp_apellidos, emp.emp_cargo, cur.cur_id,
          cur.cur_nombre, sed.sed_id, sed.sed_nombre, enc.enc_id, enc.enc_nombre, empr.empr_id,
           empr.empr_nit, empr.empr_nombre, cal.cal_id, cal.cal_calificacion, cal.created_at
         FROM empleados emp
@@ -179,7 +179,7 @@ class ResultadosController extends Controller
 
     public function download_pdf($id)
     {
-        $sql = "SELECT emp.emp_id, emp.emp_cedula, emp.emp_nombre, emp.emp_cargo, cur.cur_id,
+        $sql = "SELECT emp.emp_id, emp.emp_cedula, emp.emp_nombre, emp.emp_apellidos, emp.emp_cargo, cur.cur_id,
          cur.cur_nombre, sed.sed_id, sed.sed_nombre, enc.enc_id, enc.enc_nombre, empr.empr_id,
           empr.empr_nit, empr.empr_nombre, cal.cal_id, cal.cal_codigo, cal.cal_puntaje, cal.cal_calificacion, cal.created_at
         FROM empleados emp
@@ -211,7 +211,7 @@ class ResultadosController extends Controller
     public function tablaindex()
     {
 
-        $sql = 'SELECT emp.emp_id, emp.emp_cedula, emp.emp_nombre, emp.emp_cargo, cur.cur_id,
+        $sql = 'SELECT emp.emp_id, emp.emp_cedula, emp.emp_nombre, emp.emp_apellidos, emp.emp_cargo, cur.cur_id,
         cur.cur_nombre, sed.sed_id, sed.sed_nombre, enc.enc_id, enc.enc_nombre, empr.empr_id,
         empr.empr_nit, empr.empr_nombre, cal.cal_id, cal.cal_calificacion, cal.cal_puntaje, cal.created_at
         FROM empleados emp
@@ -238,7 +238,7 @@ class ResultadosController extends Controller
     public function tabladatos(request $request)
     {
 
-        $sql = "SELECT emp.emp_id, emp.emp_cedula, emp.emp_nombre, emp.emp_cargo, cur.cur_id,
+        $sql = "SELECT emp.emp_id, emp.emp_cedula, emp.emp_nombre, emp.emp_apellidos, emp.emp_cargo, cur.cur_id,
         cur.cur_nombre, sed.sed_id, sed.sed_nombre, enc.enc_id, enc.enc_nombre, empr.empr_id,
         empr.empr_nit, empr.empr_nombre, cal.cal_id, cal.cal_calificacion, cal.cal_puntaje ,cal.created_at
         FROM empleados emp
@@ -248,7 +248,8 @@ class ResultadosController extends Controller
         LEFT JOIN cursos cur ON cal.cur_id = cur.cur_id
         LEFT JOIN encargados enc ON enc.enc_id = cal.enc_id
         WHERE emp.emp_estado = 1
-        AND cal.created_at >= '" . $request->fecha_inicio . "' AND cal.created_at <= '" . $request->fecha_final . "'";
+        AND cal.created_at >= '" . $request->fecha_inicio . "'
+        AND cal.created_at <= '" . $request->fecha_final . "'";
 
         $datos = DB::select($sql);
 
@@ -275,7 +276,7 @@ class ResultadosController extends Controller
 
         } else {
 
-            $sql = 'SELECT emp.emp_id, emp.emp_cedula, emp.emp_nombre, emp.emp_cargo, cur.cur_id,
+            $sql = 'SELECT emp.emp_id, emp.emp_cedula, emp.emp_nombre, emp.emp_apellidos, emp.emp_cargo, cur.cur_id,
             cur.cur_nombre, sed.sed_id, sed.sed_nombre, enc.enc_id, enc.enc_nombre, empr.empr_id,
             empr.empr_nit, empr.empr_nombre, cal.cal_id, cal.cal_calificacion, cal.cal_puntaje, cal.created_at
             FROM empleados emp

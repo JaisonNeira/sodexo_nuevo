@@ -3,7 +3,7 @@
 namespace App\Exports;
 
 use App\Models\Calificacione;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
@@ -25,10 +25,9 @@ class CalificacionesExport implements FromCollection, WithHeadings
     public function headings(): array
     {
         return [
-            'Codigo calificacion',
             'Cedula empleado',
             'Nombre empleado',
-            'Cargo',
+            'Operacion',
             'Curso',
             'Sede',
             'Encargado',
@@ -41,29 +40,21 @@ class CalificacionesExport implements FromCollection, WithHeadings
     }
     public function collection()
     {
-        $calificaciones = Calificacione::select(
-            'calificaciones.cal_codigo',
-            'empleados.emp_cedula',
-            'empleados.emp_nombre',
-            'empleados.emp_cargo',
-            'cursos.cur_nombre',
-            'sed_nombre',
-            'enc_nombre',
-            'empr_nit',
-            'empr_nombre',
-            'calificaciones.cal_calificacion',
-            'calificaciones.cal_puntaje',
-            'calificaciones.created_at'
-        )
-            ->leftjoin('empleados', 'empleados.emp_id', '=', 'calificaciones.emp_id')
-            ->leftjoin('sedes', 'empleados.sed_id', '=', 'sedes.sed_id')
-            ->leftjoin('empresas', 'empleados.empr_id', '=', 'empresas.empr_id')
-            ->leftjoin('cursos', 'calificaciones.cur_id', '=', 'cursos.cur_id')
-            ->leftjoin('encargados', 'encargados.enc_id', '=', 'calificaciones.enc_id')
-            ->where('calificaciones.created_at', '>=', $this->f_ini)
-            ->where('calificaciones.created_at', '<=', $this->f_fin)
-            ->get();
 
-        return $calificaciones;
+        $sql = 'SELECT emp.emp_cedula, CONCAT(emp.emp_nombre, " ",emp.emp_apellidos) AS emp_nombre, emp.emp_cargo,
+        cur.cur_nombre, sed.sed_nombre, enc.enc_nombre,
+        empr.empr_nit, empr.empr_nombre, CONCAT(cal.cal_calificacion, "%") AS cal_calificacion, cal.cal_puntaje, cal.created_at
+        FROM empleados emp
+        LEFT JOIN calificaciones cal ON cal.emp_id = emp.emp_id
+        LEFT JOIN sedes sed ON emp.sed_id = sed.sed_id
+        LEFT JOIN empresas empr ON emp.empr_id = empr.empr_id
+        LEFT JOIN cursos cur ON cal.cur_id = cur.cur_id
+        LEFT JOIN encargados enc ON enc.enc_id = cal.enc_id
+        WHERE cal.created_at >= "'.$this->f_ini.'"
+        AND cal.created_at <= "'.$this->f_fin.'"';
+
+        $calificaciones = DB::select($sql);
+
+        return collect($calificaciones);
     }
 }

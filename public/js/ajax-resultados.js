@@ -31,17 +31,41 @@ window.onload = function () {
                         const color =
                     } */
 
+                    if(item['cur_nombre'] == null){
+                        var curso = " ";
+                    }else{
+                        var curso = item['cur_nombre'];
+                    }
+                    if(item['sed_nombre'] == null){
+                        var sede = " ";
+                    }else{
+                        var sede = item['sed_nombre'];
+                    }
+                    if(item['enc_nombre'] == null){
+                        var encargado = " ";
+                    }else{
+                        var encargado = item['enc_nombre'];
+                    }
+                    if(item['empr_nit'] == null){
+                        var nit_empresa = " ";
+                        var nombre_empresa = " ";
+                    }else{
+                        var nit_empresa = item['empr_nit'];
+                        var nombre_empresa = item['empr_nombre'];
+                    }
+
                     listado.append(
                         '<tr>' +
                         '<td>' + item['cal_id'] + '</td>' +
                         '<td>' + item['emp_cedula'] + '</td>' +
-                        '<td>' + item['emp_nombre'] + '</td>' +
+                        '<td>' + item['emp_nombre'] + ' ' + item['emp_apellidos'] + '</td>' +
                         '<td>' + item['emp_cargo'] + '</td>' +
-                        '<td>' + item['cur_nombre'] + '</td>' +
-                        '<td>' + item['sed_nombre'] + '</td>' +
-                        '<td>' + item['enc_nombre'] + '</td>' +
-                        '<td>' + item['empr_nit'] + '</td>' +
-                        '<td>' + item['empr_nombre'] + '</td>' +
+
+                        '<td>' + curso + '</td>' +
+                        '<td>' + sede + '</td>' +
+                        '<td>' + encargado + '</td>' +
+                        '<td>' + nit_empresa + '</td>' +
+                        '<td>' + nombre_empresa + '</td>' +
                         '<td>' +
                         '<div class="progress">' +
                         '<div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="9">' + item['cal_puntaje'] + '</div>' +
@@ -102,23 +126,46 @@ function cargarDatos() {
 
                     var item = data[i];
 
+                    if(item['cur_nombre'] == null){
+                        var curso = " ";
+                    }else{
+                        var curso = item['cur_nombre'];
+                    }
+                    if(item['sed_nombre'] == null){
+                        var sede = " ";
+                    }else{
+                        var sede = item['sed_nombre'];
+                    }
+                    if(item['enc_nombre'] == null){
+                        var encargado = " ";
+                    }else{
+                        var encargado = item['enc_nombre'];
+                    }
+                    if(item['empr_nit'] == null){
+                        var nit_empresa = " ";
+                        var nombre_empresa = " ";
+                    }else{
+                        var nit_empresa = item['empr_nit'];
+                        var nombre_empresa = item['empr_nombre'];
+                    }
+
                     listado.append(
                         '<tr>' +
                         '<td>' + item['cal_id'] + '</td>' +
                         '<td>' + item['emp_cedula'] + '</td>' +
-                        '<td>' + item['emp_nombre'] + '</td>' +
+                        '<td>' + item['emp_nombre'] + ' ' + item['emp_apellidos'] + '</td>' +
                         '<td>' + item['emp_cargo'] + '</td>' +
-                        '<td>' + item['cur_nombre'] + '</td>' +
-                        '<td>' + item['sed_nombre'] + '</td>' +
-                        '<td>' + item['enc_nombre'] + '</td>' +
-                        '<td>' + item['empr_nit'] + '</td>' +
-                        '<td>' + item['empr_nombre'] + '</td>' +
+
+                        '<td>' + curso + '</td>' +
+                        '<td>' + sede + '</td>' +
+                        '<td>' + encargado + '</td>' +
+                        '<td>' + nit_empresa + '</td>' +
+                        '<td>' + nombre_empresa + '</td>' +
                         '<td>' +
                         '<div class="progress">' +
                         '<div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="9">' + item['cal_puntaje'] + '</div>' +
                         '</div>' +
                         '</td>' +
-
                         '<td>' + item['cal_calificacion'] + '%</td>' +
                         '<td>' + item['created_at'] + '</td>' +
                         '<td>' +
@@ -173,17 +220,41 @@ function busqueda_avanzada() {
 
                     var item = data[i];
 
+                    if(item['cur_nombre'] == null){
+                        var curso = " ";
+                    }else{
+                        var curso = item['cur_nombre'];
+                    }
+                    if(item['sed_nombre'] == null){
+                        var sede = " ";
+                    }else{
+                        var sede = item['sed_nombre'];
+                    }
+                    if(item['enc_nombre'] == null){
+                        var encargado = " ";
+                    }else{
+                        var encargado = item['enc_nombre'];
+                    }
+                    if(item['empr_nit'] == null){
+                        var nit_empresa = " ";
+                        var nombre_empresa = " ";
+                    }else{
+                        var nit_empresa = item['empr_nit'];
+                        var nombre_empresa = item['empr_nombre'];
+                    }
+
                     listado.append(
                         '<tr>' +
                         '<td>' + item['cal_id'] + '</td>' +
                         '<td>' + item['emp_cedula'] + '</td>' +
-                        '<td>' + item['emp_nombre'] + '</td>' +
+                        '<td>' + item['emp_nombre'] + ' ' + item['emp_apellidos'] + '</td>' +
                         '<td>' + item['emp_cargo'] + '</td>' +
-                        '<td>' + item['cur_nombre'] + '</td>' +
-                        '<td>' + item['sed_nombre'] + '</td>' +
-                        '<td>' + item['enc_nombre'] + '</td>' +
-                        '<td>' + item['empr_nit'] + '</td>' +
-                        '<td>' + item['empr_nombre'] + '</td>' +
+
+                        '<td>' + curso + '</td>' +
+                        '<td>' + sede + '</td>' +
+                        '<td>' + encargado + '</td>' +
+                        '<td>' + nit_empresa + '</td>' +
+                        '<td>' + nombre_empresa + '</td>' +
                         '<td>' +
                         '<div class="progress">' +
                         '<div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="9">' + item['cal_puntaje'] + '</div>' +
@@ -235,7 +306,7 @@ function buscar_datos(cal_id) {
 
             document.getElementById('cal_id').value = datos[0].cal_id;
             document.getElementById('cal_codigo').value = datos[0].cal_codigo;
-            document.getElementById('emp_nombre').value = datos[0].emp_nombre;
+            document.getElementById('emp_nombre').value = datos[0].emp_nombre+' '+datos[0].emp_apellidos;
             document.getElementById('created_at').value = datos[0].created_at;
             if (datos[0].cal_calificacion != null) {
                 document.getElementById('cal_calificacion').value = datos[0].cal_calificacion;
@@ -306,6 +377,19 @@ function ver_mas(cal_id) {
         success: function (response) {
             var resp = response;
             var info_empleado = $("[name=info_empleado]");
+
+            if(resp.cur_nombre == null){
+                var curso = " ";
+            }else{
+                var curso = resp.cur_nombre;
+            }
+            if(resp.enc_nombre == null){
+                var encargado = " ";
+            }else{
+                var encargado = resp.enc_nombre;
+            }
+
+
             info_empleado.empty();
             info_empleado.append(
                 '<tr>' +
@@ -317,7 +401,7 @@ function ver_mas(cal_id) {
                 '<td>' + resp.emp_nombre + '</td>' +
                 '</tr>' +
                 '<tr>' +
-                '<th scope="row">Cargo</th>' +
+                '<th scope="row">Operacion</th>' +
                 '<td>' + resp.emp_cargo + '</td>' +
                 '</tr>'
             );
@@ -325,19 +409,19 @@ function ver_mas(cal_id) {
             var info_calificacion = $("[name=info_calificacion]");
             info_calificacion.empty();
             info_calificacion.append(
-                '<tr>' +
+                /* '<tr>' +
                 '<th scope="row">Codigo</th>' +
                 '<td colspan="3">' + resp.cal_codigo + '</td>' +
-                '</tr>' +
+                '</tr>' + */
                 '<tr>' +
                 '<th scope="row">Curso</th>' +
-                '<td>' + resp.cur_nombre + '</td>' +
+                '<td>' + curso + '</td>' +
                 '<th scope="row">Encargado</th>' +
-                '<td>' + resp.enc_nombre + '</td>' +
+                '<td>' + encargado + '</td>' +
                 '</tr>' +
                 '<tr>' +
                 '<th scope="row">Calificacion</th>' +
-                '<td colspan="1">' + resp.cal_calificacion + '</td>' +
+                '<td colspan="1">' + resp.cal_calificacion + '%</td>' +
                 '<th scope="row">Puntaje</th>' +
                 '<td colspan="1">' + resp.cal_puntaje + '</td>' +
                 '</tr>'

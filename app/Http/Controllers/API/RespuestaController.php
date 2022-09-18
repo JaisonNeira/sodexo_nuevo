@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Validator;
 
 class RespuestaController extends Controller
 {
-    
+
     public function post_respuesta(request $request){
 
         $data = $request->all();
@@ -93,7 +93,7 @@ class RespuestaController extends Controller
 
         $calificacion = round($cant_pre_correctas/9*100);
 
-        $cal_puntaje = $cant_pre_correctas.'/'.$cant_pre;
+        $cal_puntaje = $cant_pre_correctas.'/9';
 
         Calificacione::where('cal_id', $cal_id)->update(['cal_calificacion' => $calificacion]);
         Calificacione::where('cal_id', $cal_id)->update(['cal_puntaje' => $cal_puntaje]);
@@ -104,8 +104,8 @@ class RespuestaController extends Controller
         ]);
 
     }
-    
-    
+
+
     //public function post_respuesta(request $request){
 
         //$data = $request->all();
@@ -127,9 +127,9 @@ class RespuestaController extends Controller
         //2 0 INCORRECTO
         //$datos = $request->res_respuesta;
         //list($res_pregunta, $res_respuesta) = explode(" ", $datos);
- 
+
         //if($request->Codigo != null){
-            
+
         //    $cal_id = Calificacione::select('cal_id')->where('cal_codigo', $request->cal_codigo)->get();
 
         //    $resultado = new resultado();
@@ -137,18 +137,18 @@ class RespuestaController extends Controller
         //    $resultado->res_pregunta = $res_pregunta;
         //    $resultado->res_respuesta = $res_respuesta;
         //    $resultado->save();
-        
-            
+
+
         //}else{
         //    $resultado = new resultado();
         //    $resultado->res_pregunta = $request->Codigo;
         //    $resultado->res_respuesta = $res_respuesta;
         //    $resultado->save();
         //}
-        
+
         //return response()->json([
           //  'mensaje' => 'respuesta guardada con exito!'
-      //  ]);    
+      //  ]);
 
     //}
 

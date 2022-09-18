@@ -54,13 +54,12 @@
             text-align: left;
         }
 
-        /* TABLA */
     </style>
 
 <body>
 
     <header>
-        <img src="img/logo.png" width="100px" height="50px" class="img-responsive" alt="" style="border: 10px ; margin-top: 0;">
+        <img src="img/logo.png" width="100px" height="50px"alt="">
     </header>
 
     <footer>
@@ -82,18 +81,26 @@
 
     <div id="content">
 
+        <body>
+            <img src="img/simulado.jpg" width="700px" height="200px" alt="">
+        </body>
+
         <table class="table table-bordered">
             <tbody>
                 @foreach ($calificacion as $list2)
                     <tr>
-                        <th scope="row">Codigo Calificacion</th>
-                        <td colspan="3"> {{ $list2->cal_codigo }} </td>
+                        <th scope="row">Nombre</th>
+                        <td colspan="3"> {{ $list2->emp_nombre }} {{ $list2->emp_apellidos}} </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Cedula</th>
+                        <td colspan="3"> {{ $list2->emp_cedula }} </td>
                     </tr>
                     <tr>
                         <th scope="row">Curso</th>
                         <td> {{ $list2->cur_nombre }} </td>
-                        <th scope="row">Encargado</th>
-                        <td> {{ $list2->enc_nombre }} </td>
+                        <th scope="row">Operacion</th>
+                        <td> {{ $list2->emp_cargo }} </td>
                     </tr>
                     <tr>
                         <th scope="row">Calificacion</th>
